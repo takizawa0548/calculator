@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" afterDir="false" />
+    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="テストコード作成">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CalculateControler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calculatorEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
     </option>
@@ -49,6 +49,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last.edited.regexp": "+",
     "last_opened_file_path": "C:/Users/takizawa/Desktop/calculator"
   }
 }]]></component>
@@ -59,6 +60,62 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+  </component>
+  <component name="RunManager" selected="アプリケーション.CalculatorEntry">
+    <configuration name="CalculatorEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CalculatorEntry" />
+      <module name="calculator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculateControlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculateControlerTest.演算子リストから位置取得_割り算" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="METHOD_NAME" value="演算子リストから位置取得_割り算" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorExeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculatorExeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorExeTest.最小値関数成功_負の整数" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculatorExeTest" />
+      <option name="METHOD_NAME" value="最小値関数成功_負の整数" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="アプリケーション.CalculatorEntry" />
+        <item itemvalue="JUnit.CalculatorExeTest" />
+        <item itemvalue="JUnit.CalculatorExeTest.最小値関数成功_負の整数" />
+        <item itemvalue="JUnit.CalculateControlerTest.演算子リストから位置取得_割り算" />
+        <item itemvalue="JUnit.CalculateControlerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="アプリケーションレベル" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678796924774</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="テストコード作成">
+      <created>1678979121795</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678979121795</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -92,6 +156,38 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="テストコード作成" />
+    <option name="LAST_COMMIT_MESSAGE" value="テストコード作成" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
