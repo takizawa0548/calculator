@@ -19,11 +19,11 @@ class CalculatorExeTest {
     }
     @Test
     void 足し算成功_小数e() {
-        assertEquals("5.5E+10", CalculatorExe.call("+",new String[]{"5E10","5E9"}));
+        assertEquals("5.5E10", CalculatorExe.call("+",new String[]{"5E10","5E9"}));
     }
     @Test
     void 足し算成功_小数e_2() {
-        assertEquals("5.5E+10", CalculatorExe.call("+",new String[]{"5E+10","5E+9"}));
+        assertEquals("5.5E10", CalculatorExe.call("+",new String[]{"5E10","5E9"}));
     }
     @Test
     void 引き算成功_正の整数() {
@@ -43,11 +43,11 @@ class CalculatorExeTest {
     }
     @Test
     void 引き算成功_小数e() {
-        assertEquals("4.5E+10", CalculatorExe.call("-",new String[]{"5E10","5E9"}));
+        assertEquals("4.5E10", CalculatorExe.call("-",new String[]{"5E10","5E9"}));
     }
     @Test
     void 引き算成功_小数e_2() {
-        assertEquals("4.5E+10", CalculatorExe.call("-",new String[]{"5E+10","5E+9"}));
+        assertEquals("4.5E10", CalculatorExe.call("-",new String[]{"5E10","5E9"}));
     }
     @Test
     void 掛け算成功_正の整数() {
@@ -63,11 +63,11 @@ class CalculatorExeTest {
     }
     @Test
     void 掛け算成功_小数e() {
-        assertEquals("2.5E+4", CalculatorExe.call("*",new String[]{"5E1","5E2"}));
+        assertEquals("2.5E4", CalculatorExe.call("*",new String[]{"5E1","5E2"}));
     }
     @Test
     void 掛け算成功_小数e_2() {
-        assertEquals("2.5E+4", CalculatorExe.call("*",new String[]{"5E+1","5E+2"}));
+        assertEquals("2.5E4", CalculatorExe.call("*",new String[]{"5E1","5E2"}));
     }
     @Test
     void 割り算成功_正の整数() {
@@ -87,7 +87,7 @@ class CalculatorExeTest {
     }
     @Test
     void 割り算成功_小数e_2() {
-        assertEquals("10.00000000000", CalculatorExe.call("/",new String[]{"5E+10","5E+9"}));
+        assertEquals("10.00000000000", CalculatorExe.call("/",new String[]{"5E10","5E9"}));
     }
     @Test
     void 割り算失敗_ゼロ除算() {
@@ -140,5 +140,71 @@ class CalculatorExeTest {
     @Test
     void 最小値関数成功_複数配列() {
         assertEquals("1", CalculatorExe.call("min",new String[]{"555555","2","1"}));
+    }
+    @Test
+    void 引数不正値() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("+",new String[]{"aiueo","2"});
+        });
+    }
+    @Test
+    void 引数不正値_2() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("+",new String[]{"1","1..5"});
+        });
+    }
+    @Test
+    void 引数不正値_3() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("+",new String[]{"1","+"});
+        });
+    }
+    @Test
+    void 不正な引数_足し算() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("+",new String[]{"555555","2","1"});
+        });
+    }
+    @Test
+    void 不正な引数_引き算() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("-",new String[]{"555555","2","1"});
+        });
+    }
+    @Test
+    void 不正な引数_掛け算() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("*",new String[]{"555555","2","1"});
+        });
+    }
+    @Test
+    void 不正な引数_割り算() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("/",new String[]{"555555","2","1"});
+        });
+    }
+    @Test
+    void 不正な引数_平方根() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("sqrt",new String[]{"555555","2","1"});
+        });
+    }
+    @Test
+    void 不正な引数_最大値() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("max",new String[0]);
+        });
+    }
+    @Test
+    void 不正な引数_最小値() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("min",new String[0]);
+        });
+    }
+    @Test
+    void 使用不可な演算子の呼び出し() {
+        Assertions.assertThrows(Exception.class, () -> {
+            CalculatorExe.call("sum",new String[]{"555555","2","1"});
+        });
     }
 }

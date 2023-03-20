@@ -134,6 +134,6 @@ class CalculateControlerTest {
     @Test
     void 計算結果小数点以下の成型_小数e() {
         CalculateControler calcControl = new CalculateControler();
-        assertEquals("5E+5", calcControl.editNum("5E+5"));
+        assertEquals("5E5", calcControl.editNum("5E5"));
     }
 }

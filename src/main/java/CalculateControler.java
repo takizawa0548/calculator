@@ -22,12 +22,12 @@ public class CalculateControler {
                 throw new IllegalArgumentException("演算子が連続しています");
             }
             // 数値の格納
-            if (numFormulaBalance == 0 && ('-' == CHAR_ARRAY[index] || String.valueOf(CHAR_ARRAY[index]).matches("[0-9E\\.]"))) {
+            if (numFormulaBalance == 0 && ('-' == CHAR_ARRAY[index] || String.valueOf(CHAR_ARRAY[index]).matches("[0-9E.]"))) {
                 insertNumStr.append(CHAR_ARRAY[index]);
                 index++;
                 // 格納する数値を取得
                 while (index < CHAR_ARRAY.length) {
-                    if (!String.valueOf(CHAR_ARRAY[index]).matches("[0-9E\\.]")) {
+                    if (!String.valueOf(CHAR_ARRAY[index]).matches("[0-9E.]")) {
                         break;
                     }
                     insertNumStr.append(CHAR_ARRAY[index]);
@@ -44,7 +44,6 @@ public class CalculateControler {
                 insertNumStr = new StringBuilder();
                 // インクリメント
                 numFormulaBalance++;
-                continue;
             }
             // 演算子の格納
             else if (numFormulaBalance == 1 && String.valueOf(CHAR_ARRAY[index]).matches("[+\\-*/]")) {
@@ -53,7 +52,6 @@ public class CalculateControler {
                 index++;
                 // デクリメント
                 numFormulaBalance--;
-                continue;
             }
             // 関数が出た場合(演算子の後に来るものとする）
             else if (numFormulaBalance == 0 && String.valueOf(CHAR_ARRAY[index]).matches("[sqrtmax]")) {
@@ -62,7 +60,7 @@ public class CalculateControler {
                 index++;
                 // 関数名の取得
                 while (index < CHAR_ARRAY.length) {
-                    if ("sqrt".equals(insertFuctionStr.toString()) || "max".equals(insertFuctionStr.toString())) {
+                    if ("sqrt".equals(insertFuctionStr.toString()) || "max".equals(insertFuctionStr.toString())|| "min".equals(insertFuctionStr.toString())) {
                         // 括弧内情報取得
                         int parenthesesBalance = 0;
                         if ('(' == CHAR_ARRAY[index]) {
@@ -109,7 +107,6 @@ public class CalculateControler {
                 numList.add(addStr);
                 // インクリメント
                 numFormulaBalance++;
-                continue;
             }
             // 括弧が出た場合(演算子の後に来るものとする&関数の括弧ではないこと）
             else if (numFormulaBalance == 0 && '('==CHAR_ARRAY[index]) {
@@ -138,7 +135,6 @@ public class CalculateControler {
                 numList.add(numStr);
                 // インクリメント
                 numFormulaBalance++;
-                continue;
             }else{
                 throw new IllegalArgumentException("不正な式です");
             }
@@ -164,12 +160,12 @@ public class CalculateControler {
         int multiplicationIndex = forumlaIndex("*",formulaList);
         int divisionIndex = forumlaIndex("/",formulaList);
         if(multiplicationIndex != -1 || divisionIndex != -1){
-            int index = 0;
+            int index;
             if(multiplicationIndex != -1 && divisionIndex != -1){
                 index = min(multiplicationIndex,divisionIndex);
             }else if(multiplicationIndex != -1){
                 index = multiplicationIndex;
-            }else if(divisionIndex != -1){
+            }else {
                 index = divisionIndex;
             }
 
@@ -178,15 +174,14 @@ public class CalculateControler {
             numList.set(index,str);
             numList.remove(index+1);
             formulaList.remove(index);
-            return;
         }
-        if(additionIndex != -1 || subtractionIndex != -1){
-            int index = 0;
+        else if(additionIndex != -1 || subtractionIndex != -1){
+            int index;
             if(additionIndex != -1 && subtractionIndex != -1){
                 index = min(additionIndex,subtractionIndex);
             }else if(additionIndex != -1){
                 index = additionIndex;
-            }else if(subtractionIndex != -1){
+            }else {
                 index = subtractionIndex;
             }
             String[] list = new String[]{numList.get(index),numList.get(index+1)};
@@ -203,6 +198,6 @@ public class CalculateControler {
 
     public String editNum(String numStr){
         BigDecimal value = new BigDecimal(numStr);
-        return value.stripTrailingZeros().toString();
+        return value.stripTrailingZeros().toString().replace("+","");
     }
 }

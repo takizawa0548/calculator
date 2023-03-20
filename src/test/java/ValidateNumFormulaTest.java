@@ -10,7 +10,7 @@ class ValidateNumFormulaTest {
 
     @Test
     void 入力可能文字の検証成功() {
-        assertTrue(ValidateNumFormula.validateInputStr("0123456789.E+-*/()sqrtmax,"));
+        assertTrue(ValidateNumFormula.validateInputStr("0123456789.E+-*/()sqrtmaxmin,"));
     }
 
     @Test
