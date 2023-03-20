@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
+/**
+ * 計算機mainクラス
+ * @author M.Takizawa
+ * @version 1.0.0
+ */
 public class CalculatorEntry {
+    /**
+     * mainメソッド<BR>
+     * 与えられた式を検証した後、計算機実行クラスを呼び出し結果を出力する
+     * @param args 数式
+     */
     public static void main(String[] args) {
         final Scanner sc = new Scanner(System.in);
         final String str = sc.next();

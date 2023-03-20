@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="不要な小数点以下の０を削除&#10;例外処理発生時のメッセージを表示できるように修正">
+    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="小数E（5.4E5など）対応&#10;計算結果の5E+3などを5E3のように変換&#10;minの関数が漏れていたので追加&#10;演算メソッドに数値チェックと引数チェック追加">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculateControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculateControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +64,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="アプリケーション.CalculatorEntry">
+  <component name="RunManager" selected="JUnit.calculator 内のすべて">
     <configuration name="CalculatorEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorEntry" />
       <module name="calculator" />
@@ -68,20 +72,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculateControlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateControlerTest.計算結果格納確認" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="計算結果格納確認" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorExeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateControlerTest.計算結果格納_失敗" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CalculatorExeTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="METHOD_NAME" value="計算結果格納_失敗" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,11 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="アプリケーション.CalculatorEntry" />
         <item itemvalue="JUnit.calculator 内のすべて" />
+        <item itemvalue="JUnit.CalculateControlerTest.計算結果格納_失敗" />
+        <item itemvalue="JUnit.CalculateControlerTest.計算結果格納確認" />
+        <item itemvalue="アプリケーション.CalculatorEntry" />
         <item itemvalue="JUnit.ValidateNumFormulaTest" />
-        <item itemvalue="JUnit.CalculateControlerTest" />
-        <item itemvalue="JUnit.CalculatorExeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679270778214</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="小数E（5.4E5など）対応&#10;計算結果の5E+3などを5E3のように変換&#10;minの関数が漏れていたので追加&#10;演算メソッドに数値チェックと引数チェック追加">
+      <created>1679278171654</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679278171654</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,27 +182,7 @@
     <MESSAGE value="テストコード作成" />
     <MESSAGE value="lebel5の例を正しく出せるところまで" />
     <MESSAGE value="不要な小数点以下の０を削除&#10;例外処理発生時のメッセージを表示できるように修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="不要な小数点以下の０を削除&#10;例外処理発生時のメッセージを表示できるように修正" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculatorExe.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="小数E（5.4E5など）対応&#10;計算結果の5E+3などを5E3のように変換&#10;minの関数が漏れていたので追加&#10;演算メソッドに数値チェックと引数チェック追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="小数E（5.4E5など）対応&#10;計算結果の5E+3などを5E3のように変換&#10;minの関数が漏れていたので追加&#10;演算メソッドに数値チェックと引数チェック追加" />
   </component>
 </project>

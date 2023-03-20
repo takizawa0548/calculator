@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,5 +78,41 @@ class ValidateNumFormulaTest {
         List<String> numList = Arrays.asList("1","2","2");
         List<String> formulaList = Arrays.asList("+");
         assertEquals(false, ValidateNumFormula.checkNumFormulaList(numList,formulaList));
+    }
+    @Test
+    void 数値配列一番目の判定_数値_成功() {
+        assertTrue(ValidateNumFormula.checkCharFirstNumber('0'));
+    }
+    @Test
+    void 数値配列一番目の判定_マイナス記号_成功() {
+        assertTrue(ValidateNumFormula.checkCharFirstNumber('-'));
+    }
+    @Test
+    void 数値配列一番目の判定_失敗() {
+        assertEquals(false, ValidateNumFormula.checkCharFirstNumber('E'));
+    }
+    @Test
+    void 数値配列二番目以降の判定_成功() {
+        assertTrue(ValidateNumFormula.checkCharLoopNumber('0'));
+    }
+    @Test
+    void 数値配列二番目以降の判定_失敗() {
+        assertEquals(false, ValidateNumFormula.checkCharLoopNumber('a'));
+    }
+    @Test
+    void 関数配列一番目以降の判定_成功() {
+        assertTrue(ValidateNumFormula.checkCharFirstFunction('s'));
+    }
+    @Test
+    void 関数配列一番目以降の判定_失敗() {
+        assertEquals(false, ValidateNumFormula.checkCharFirstFunction('S'));
+    }
+    @Test
+    void 関数配列二番目以降の判定_成功() {
+        assertTrue(ValidateNumFormula.checkCharLoopFunction("sqrt"));
+    }
+    @Test
+    void 数値配列一番目以降の判定_失敗() {
+        assertEquals(false, ValidateNumFormula.checkCharLoopFunction("wwwwwww"));
     }
 }

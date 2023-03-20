@@ -3,8 +3,20 @@ import java.math.RoundingMode;
 
 import static java.lang.Math.*;
 
+/**
+ * 演算実行クラス
+ * @author M.Takizawa
+ * @version 1.0.0
+ */
 public class CalculatorExe {
-    // 演算メソッドの呼び出し
+    /**
+     * 演算メソッドの呼び出し<BR>
+     * 指定された引数に応じて演算メソッドを呼び出す
+     * @param operator 演算子
+     * @param funcArgList 数値リスト
+     * @return 検証結果(boolean)
+     * @throws IllegalArgumentException 演算子に対する引数が不正の場合
+     */
     static String call (String operator, String[] funcArgList){
         // 数値チェック
         for(String checkArg : funcArgList){
@@ -60,37 +72,63 @@ public class CalculatorExe {
                 throw new IllegalArgumentException("使用不可能な演算子です");
         }
     }
-    // 足し算
+    /**
+     * 足し算をする
+     * @param numLeft 左側の数値
+     * @param numRight 右側の数値
+     * @return 演算結果
+     */
     private static String addition (String numLeft,String numRight){
         BigDecimal calcLeft = new BigDecimal(numLeft);
         BigDecimal calcRight = new BigDecimal(numRight);
         return calcLeft.add(calcRight).toString().replace("+","");
     }
-    // 引き算
+    /**
+     * 引き算をする
+     * @param numLeft 左側の数値
+     * @param numRight 右側の数値
+     * @return 演算結果
+     */
     private static String subtraction (String numLeft,String numRight){
         BigDecimal calcLeft = new BigDecimal(numLeft);
         BigDecimal calcRight = new BigDecimal(numRight);
         return calcLeft.subtract(calcRight).toString().replace("+","");
     }
-    // 掛け算
+    /**
+     * 掛け算をする
+     * @param numLeft 左側の数値
+     * @param numRight 右側の数値
+     * @return 演算結果
+     */
     private static String multiplication (String numLeft,String numRight){
         BigDecimal calcLeft = new BigDecimal(numLeft);
         BigDecimal calcRight = new BigDecimal(numRight);
         return calcLeft.multiply(calcRight).toString().replace("+","");
     }
-    // 割り算
+    /**
+     * 割り算をする
+     * @param numLeft 左側の数値
+     * @param numRight 右側の数値
+     * @return 演算結果
+     * @throws IllegalArgumentException ０除算が発生した場合
+     */
     private static String division (String numLeft,String numRight){
         BigDecimal calcLeft = new BigDecimal(numLeft);
         BigDecimal calcRight = new BigDecimal(numRight);
         // ゼロ除算の考慮
         if("0".equals(numRight)){
             //例外処理
-            throw new IllegalArgumentException("0除算が発生しました");
+            throw new IllegalArgumentException("ゼロ除算が発生しました");
         }
         // 無限小数の考慮
         return calcLeft.divide(calcRight,11, RoundingMode.HALF_UP).toString().replace("+","");
     }
-    // 平方根
+    /**
+     * Sqrt関数を実行する
+     * @param funcArgStr 数値
+     * @return 演算結果
+     * @throws IllegalArgumentException 負数が指定された場合
+     */
     private static String functionSqrt (String funcArgStr){
         // 負数の考慮
         if("-".equals(funcArgStr.substring(0,1))){
@@ -99,7 +137,11 @@ public class CalculatorExe {
         }
         return String.valueOf(sqrt(Double.parseDouble(funcArgStr))).replace("+","");
     }
-    // 最大値の選択
+    /**
+     * Max関数を実行する
+     * @param funcArgList 数値リスト
+     * @return 演算結果
+     */
     private static String functionMax (String[] funcArgList){
         BigDecimal compare = new BigDecimal(funcArgList[0]);
         for(int i = 1; i < funcArgList.length; i++){
@@ -110,7 +152,11 @@ public class CalculatorExe {
         }
         return String.valueOf(compare.toString()).replace("+","");
     }
-    // 最小値の選択
+    /**
+     * Min関数を実行する
+     * @param funcArgList 数値リスト
+     * @return 演算結果
+     */
     private static String functionMin (String[] funcArgList){
         BigDecimal compare = new BigDecimal(funcArgList[0]);
         for(int i = 1; i < funcArgList.length; i++){

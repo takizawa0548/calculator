@@ -2,8 +2,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import static java.lang.Math.min;
-
+/**
+ * 計算機実行クラス
+ * @author M.Takizawa
+ * @version 1.0.0
+ */
 public class CalculateControler {
+    /**
+     * 実行メソッド<BR>
+     * 与えられた式を再帰的に処理し計算結果を返す
+     * @param numFormulaStr 数式
+     * @return 演算結果
+     * @throws IllegalArgumentException 不正な式の場合
+     */
     public String exec(String numFormulaStr){
         List<String> numList = new ArrayList<>();
         List<String> formulaList = new ArrayList<>();
@@ -22,12 +33,14 @@ public class CalculateControler {
                 throw new IllegalArgumentException("演算子が連続しています");
             }
             // 数値の格納
-            if (numFormulaBalance == 0 && ('-' == CHAR_ARRAY[index] || String.valueOf(CHAR_ARRAY[index]).matches("[0-9E.]"))) {
+            if (numFormulaBalance == 0 && ValidateNumFormula.checkCharFirstNumber(CHAR_ARRAY[index])) {
+                // 数値配列へ格納
                 insertNumStr.append(CHAR_ARRAY[index]);
                 index++;
                 // 格納する数値を取得
                 while (index < CHAR_ARRAY.length) {
-                    if (!String.valueOf(CHAR_ARRAY[index]).matches("[0-9E.]")) {
+                    // ２文字目以降で数値が取得できなくなったらbreak
+                    if (!ValidateNumFormula.checkCharLoopNumber(CHAR_ARRAY[index])) {
                         break;
                     }
                     insertNumStr.append(CHAR_ARRAY[index]);
@@ -46,7 +59,7 @@ public class CalculateControler {
                 numFormulaBalance++;
             }
             // 演算子の格納
-            else if (numFormulaBalance == 1 && String.valueOf(CHAR_ARRAY[index]).matches("[+\\-*/]")) {
+            else if (numFormulaBalance == 1 && ValidateNumFormula.checkCharFomula(CHAR_ARRAY[index])) {
                 // 演算子リストへ格納
                 formulaList.add(String.valueOf(CHAR_ARRAY[index]));
                 index++;
@@ -54,19 +67,22 @@ public class CalculateControler {
                 numFormulaBalance--;
             }
             // 関数が出た場合(演算子の後に来るものとする）
-            else if (numFormulaBalance == 0 && String.valueOf(CHAR_ARRAY[index]).matches("[sqrtmax]")) {
+            else if (numFormulaBalance == 0 && ValidateNumFormula.checkCharFirstFunction(CHAR_ARRAY[index])) {
                 String addStr = "";
+                // 関数文字列格納
                 insertFuctionStr.append(CHAR_ARRAY[index]);
                 index++;
                 // 関数名の取得
                 while (index < CHAR_ARRAY.length) {
-                    if ("sqrt".equals(insertFuctionStr.toString()) || "max".equals(insertFuctionStr.toString())|| "min".equals(insertFuctionStr.toString())) {
+                    // 該当する関数文字列があれば関数メソッド呼び出しの処理に入る
+                    if (ValidateNumFormula.checkCharLoopFunction(insertFuctionStr.toString())) {
                         // 括弧内情報取得
                         int parenthesesBalance = 0;
                         if ('(' == CHAR_ARRAY[index]) {
                             parenthesesBalance++;
                             index++;
                             StringBuilder functionArgsStr = new StringBuilder();
+                            // 関数内の引数取得
                             while (index < CHAR_ARRAY.length) {
                                 if ('(' == CHAR_ARRAY[index]) {
                                     parenthesesBalance++;
@@ -81,12 +97,12 @@ public class CalculateControler {
                                 functionArgsStr.append(CHAR_ARRAY[index]);
                                 index++;
                             }
-                            // 配列に格納
+                            // ","で分解し配列に格納
                             String[] argsStrList = functionArgsStr.toString().split(",");
                             // 引数が数値になるように再帰呼び出し
                             for (int i = 0; i < argsStrList.length; i++) {
                                 final String argsStr = argsStrList[i];
-                                // 数値でなければ呼び出し
+                                // 数値でなければ呼び出す
                                 if (!ValidateNumFormula.checkNum(argsStr)) {
                                     argsStrList[i] = new CalculateControler().exec(argsStr);
                                 }
@@ -95,7 +111,7 @@ public class CalculateControler {
                             addStr = CalculatorExe.call(insertFuctionStr.toString(), argsStrList);
                             break;
                         } else {
-                            //例外処理
+                            // 例外処理
                             throw new IllegalArgumentException(insertFuctionStr + "関数の後に括弧がありません");
                         }
                     }
@@ -115,6 +131,7 @@ public class CalculateControler {
                 parenthesesBalance++;
                 index++;
                 StringBuilder functionArgsStr = new StringBuilder();
+                // 括弧内の値取得
                 while (index < CHAR_ARRAY.length) {
                     if ('(' == CHAR_ARRAY[index]) {
                         parenthesesBalance++;
@@ -136,6 +153,7 @@ public class CalculateControler {
                 // インクリメント
                 numFormulaBalance++;
             }else{
+                // 例外処理
                 throw new IllegalArgumentException("不正な式です");
             }
         }
@@ -154,29 +172,33 @@ public class CalculateControler {
         return editNum(numList.get(0));
     }
 
+    /**
+     * 与えられた演算リストから優先順位の高い位置を取得した後、<BR>
+     * 演算メソッドを呼び出し演算リストと数値リストを編集する
+     * @param numList 数値リスト
+     * @param formulaList 演算リスト
+     * @throws IllegalArgumentException 四則演算子以外の場合
+     */
     public void editNumFormulaList(List<String> numList,List<String> formulaList){
+        // 四則演算の優先度順、式の左側から演算していく
         int additionIndex = forumlaIndex("+",formulaList);
         int subtractionIndex = forumlaIndex("-",formulaList);
         int multiplicationIndex = forumlaIndex("*",formulaList);
         int divisionIndex = forumlaIndex("/",formulaList);
+        int index;
+        // 掛け算と割り算
         if(multiplicationIndex != -1 || divisionIndex != -1){
-            int index;
             if(multiplicationIndex != -1 && divisionIndex != -1){
+                // 両方存在する場合は、式の左側に近い方を優先する
                 index = min(multiplicationIndex,divisionIndex);
             }else if(multiplicationIndex != -1){
                 index = multiplicationIndex;
             }else {
                 index = divisionIndex;
             }
-
-            String[] list = new String[]{numList.get(index),numList.get(index+1)};
-            String str = CalculatorExe.call(formulaList.get(index),list);
-            numList.set(index,str);
-            numList.remove(index+1);
-            formulaList.remove(index);
         }
+        // 足し算と引き算
         else if(additionIndex != -1 || subtractionIndex != -1){
-            int index;
             if(additionIndex != -1 && subtractionIndex != -1){
                 index = min(additionIndex,subtractionIndex);
             }else if(additionIndex != -1){
@@ -184,18 +206,37 @@ public class CalculateControler {
             }else {
                 index = subtractionIndex;
             }
-            String[] list = new String[]{numList.get(index),numList.get(index+1)};
-            String str = CalculatorExe.call(formulaList.get(index),list);
-            numList.set(index,str);
-            numList.remove(index+1);
-            formulaList.remove(index);
         }
+        // 該当なし
+        else {
+            throw new IllegalArgumentException("不正な演算子です");
+        }
+        // 演算用の数値を格納
+        String[] list = new String[]{numList.get(index),numList.get(index+1)};
+        // 演算メソッド呼び出し
+        String str = CalculatorExe.call(formulaList.get(index),list);
+        // 数値リストと演算子リストの編集
+        numList.set(index,str);
+        numList.remove(index+1);
+        formulaList.remove(index);
     }
-
+    /**
+     * 指定された演算子が最初に現れるインデックスを演算子リストから取得
+     * @param forumulaStr 演算子
+     * @param formulaList 演算子リスト
+     * @return 引数で指定した演算子が最初に現れるインデックス
+     */
     public int forumlaIndex(String forumulaStr,List<String> formulaList){
+        // 演算子の位置取得
         return formulaList.indexOf(forumulaStr);
     }
 
+    /**
+     * 引数で渡された値から.00000のような0のみの小数値を削除し、<BR>
+     * 5E+10のような値を5E10に変換する
+     * @param numStr 数値
+     * @return 修正された数値
+     */
     public String editNum(String numStr){
         BigDecimal value = new BigDecimal(numStr);
         return value.stripTrailingZeros().toString().replace("+","");

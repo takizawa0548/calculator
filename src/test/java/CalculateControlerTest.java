@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ class CalculateControlerTest {
         assertEquals(-1, calcControl.forumlaIndex("/",formulaList));
     }
     @Test
-    void 計算結果格納確認() {
+    void 計算結果格納_成功() {
         CalculateControler calcControl = new CalculateControler();
         List<String> numList = new ArrayList<>();
         numList.add("1");
@@ -75,6 +76,18 @@ class CalculateControlerTest {
         assertEquals("3", numList.get(0));
         assertEquals(1, numList.size());
         assertEquals(0, formulaList.size());
+    }
+    @Test
+    void 計算結果格納_失敗() {
+        CalculateControler calcControl = new CalculateControler();
+        List<String> numList = new ArrayList<>();
+        numList.add("1");
+        numList.add("2");
+        List<String> formulaList = new ArrayList<>();
+        formulaList.add("#");
+        Assertions.assertThrows(Exception.class, () -> {
+            calcControl.editNumFormulaList(numList,formulaList);
+        });
     }
     @Test
     void 計算結果小数点以下の成型_1() {
