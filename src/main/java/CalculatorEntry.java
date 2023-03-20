@@ -15,8 +15,12 @@ public class CalculatorEntry {
             return;
         }
         // 本計算
-        final String ANSWER = new CalculateControler().exec(str);
-        System.out.println(ANSWER);
+        try{
+            final String ANSWER = new CalculateControler().exec(str);
+            System.out.println(ANSWER);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }

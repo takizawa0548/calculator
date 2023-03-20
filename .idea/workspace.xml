@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="テストコード作成">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CalculateControler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" afterDir="false" />
+    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="lebel5の例を正しく出せるところまで">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculateControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculateControler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorExe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValidateNumFormula.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculatorExeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,30 +74,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculateControlerTest.演算子リストから位置取得_割り算" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateControlerTest.計算結果小数点以下の成型_小数あり" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
-      <option name="METHOD_NAME" value="演算子リストから位置取得_割り算" />
+      <option name="METHOD_NAME" value="計算結果小数点以下の成型_小数あり" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorExeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateControlerTest.計算結果小数点以下の成型_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CalculatorExeTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="METHOD_NAME" value="計算結果小数点以下の成型_1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorExeTest.最小値関数成功_負の整数" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateControlerTest.計算結果小数点以下の成型_小数あり_2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CalculatorExeTest" />
-      <option name="METHOD_NAME" value="最小値関数成功_負の整数" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="METHOD_NAME" value="計算結果小数点以下の成型_小数あり_2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,10 +107,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="アプリケーション.CalculatorEntry" />
-        <item itemvalue="JUnit.CalculatorExeTest" />
-        <item itemvalue="JUnit.CalculatorExeTest.最小値関数成功_負の整数" />
-        <item itemvalue="JUnit.CalculateControlerTest.演算子リストから位置取得_割り算" />
         <item itemvalue="JUnit.CalculateControlerTest" />
+        <item itemvalue="JUnit.CalculateControlerTest.計算結果小数点以下の成型_小数あり_2" />
+        <item itemvalue="JUnit.CalculateControlerTest.計算結果小数点以下の成型_小数あり" />
+        <item itemvalue="JUnit.CalculateControlerTest.計算結果小数点以下の成型_1" />
       </list>
     </recent_temporary>
   </component>
@@ -140,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678979121795</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="lebel5の例を正しく出せるところまで">
+      <created>1679223610093</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679223610093</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,34 +161,25 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="テストコード作成" />
-    <option name="LAST_COMMIT_MESSAGE" value="テストコード作成" />
+    <MESSAGE value="lebel5の例を正しく出せるところまで" />
+    <option name="LAST_COMMIT_MESSAGE" value="lebel5の例を正しく出せるところまで" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>142</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>27</line>
+          <line>28</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>63</line>
+          <line>64</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/CalculateControler.java</url>
-          <line>95</line>
+          <line>96</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>

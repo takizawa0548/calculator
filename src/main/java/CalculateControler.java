@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import static java.lang.Math.min;
@@ -13,23 +14,23 @@ public class CalculateControler {
         StringBuilder insertNumStr = new StringBuilder();
         StringBuilder insertFuctionStr = new StringBuilder();
         // 数値と演算子を仕分ける。関数や括弧が出てきたら括弧の範囲内を引数に再帰処理
-        final char[] charArray = numFormulaStr.toCharArray();
-        while(index < charArray.length) {
+        final char[] CHAR_ARRAY = numFormulaStr.toCharArray();
+        while(index < CHAR_ARRAY.length) {
             // 演算子が続いた場合処理中止
             if (numFormulaBalance == -1) {
                 // 例外処理
                 throw new IllegalArgumentException("演算子が連続しています");
             }
             // 数値の格納
-            if (numFormulaBalance == 0 && ('-' == charArray[index] || String.valueOf(charArray[index]).matches("[0-9E\\.]"))) {
-                insertNumStr.append(charArray[index]);
+            if (numFormulaBalance == 0 && ('-' == CHAR_ARRAY[index] || String.valueOf(CHAR_ARRAY[index]).matches("[0-9E\\.]"))) {
+                insertNumStr.append(CHAR_ARRAY[index]);
                 index++;
                 // 格納する数値を取得
-                while (index < charArray.length) {
-                    if (!String.valueOf(charArray[index]).matches("[0-9E\\.]")) {
+                while (index < CHAR_ARRAY.length) {
+                    if (!String.valueOf(CHAR_ARRAY[index]).matches("[0-9E\\.]")) {
                         break;
                     }
-                    insertNumStr.append(charArray[index]);
+                    insertNumStr.append(CHAR_ARRAY[index]);
                     index++;
                 }
                 // 不正値の検証
@@ -46,32 +47,32 @@ public class CalculateControler {
                 continue;
             }
             // 演算子の格納
-            if (numFormulaBalance == 1 && String.valueOf(charArray[index]).matches("[+\\-*/]")) {
+            else if (numFormulaBalance == 1 && String.valueOf(CHAR_ARRAY[index]).matches("[+\\-*/]")) {
                 // 演算子リストへ格納
-                formulaList.add(String.valueOf(charArray[index]));
+                formulaList.add(String.valueOf(CHAR_ARRAY[index]));
                 index++;
                 // デクリメント
                 numFormulaBalance--;
                 continue;
             }
             // 関数が出た場合(演算子の後に来るものとする）
-            if (numFormulaBalance == 0 && String.valueOf(charArray[index]).matches("[sqrtmax]")) {
+            else if (numFormulaBalance == 0 && String.valueOf(CHAR_ARRAY[index]).matches("[sqrtmax]")) {
                 String addStr = "";
-                insertFuctionStr.append(charArray[index]);
+                insertFuctionStr.append(CHAR_ARRAY[index]);
                 index++;
                 // 関数名の取得
-                while (index < charArray.length) {
+                while (index < CHAR_ARRAY.length) {
                     if ("sqrt".equals(insertFuctionStr.toString()) || "max".equals(insertFuctionStr.toString())) {
                         // 括弧内情報取得
                         int parenthesesBalance = 0;
-                        if ('(' == charArray[index]) {
+                        if ('(' == CHAR_ARRAY[index]) {
                             parenthesesBalance++;
                             index++;
                             StringBuilder functionArgsStr = new StringBuilder();
-                            while (index < charArray.length) {
-                                if ('(' == charArray[index]) {
+                            while (index < CHAR_ARRAY.length) {
+                                if ('(' == CHAR_ARRAY[index]) {
                                     parenthesesBalance++;
-                                } else if (')' == charArray[index]) {
+                                } else if (')' == CHAR_ARRAY[index]) {
                                     parenthesesBalance--;
                                 }
                                 if (parenthesesBalance == 0) {
@@ -79,7 +80,7 @@ public class CalculateControler {
                                     break;
                                 }
                                 // 引数格納
-                                functionArgsStr.append(charArray[index]);
+                                functionArgsStr.append(CHAR_ARRAY[index]);
                                 index++;
                             }
                             // 配列に格納
@@ -101,7 +102,7 @@ public class CalculateControler {
                         }
                     }
                     //関数名を取得するまで
-                    insertFuctionStr.append(charArray[index]);
+                    insertFuctionStr.append(CHAR_ARRAY[index]);
                     index++;
                 }
                 // 数値リストへ格納
@@ -111,16 +112,16 @@ public class CalculateControler {
                 continue;
             }
             // 括弧が出た場合(演算子の後に来るものとする&関数の括弧ではないこと）
-            if (numFormulaBalance == 0 && '('==charArray[index]) {
+            else if (numFormulaBalance == 0 && '('==CHAR_ARRAY[index]) {
                 // 括弧内情報取得
                 int parenthesesBalance = 0;
                 parenthesesBalance++;
                 index++;
                 StringBuilder functionArgsStr = new StringBuilder();
-                while (index < charArray.length) {
-                    if ('(' == charArray[index]) {
+                while (index < CHAR_ARRAY.length) {
+                    if ('(' == CHAR_ARRAY[index]) {
                         parenthesesBalance++;
-                    } else if (')' == charArray[index]) {
+                    } else if (')' == CHAR_ARRAY[index]) {
                         parenthesesBalance--;
                     }
                     if (parenthesesBalance == 0) {
@@ -128,7 +129,7 @@ public class CalculateControler {
                         break;
                     }
                     // 引数格納
-                    functionArgsStr.append(charArray[index]);
+                    functionArgsStr.append(CHAR_ARRAY[index]);
                     index++;
                 }
                 // 再帰呼び出し
@@ -137,6 +138,9 @@ public class CalculateControler {
                 numList.add(numStr);
                 // インクリメント
                 numFormulaBalance++;
+                continue;
+            }else{
+                throw new IllegalArgumentException("不正な式です");
             }
         }
         // 数値と演算子の数があっていなければ処理終了(1+1+,1++1のような不正な式を排除)
@@ -150,7 +154,8 @@ public class CalculateControler {
             editNumFormulaList(numList,formulaList);
         }
 
-        return numList.get(0);
+        // 不要な小数点以下の数値を成型しリターン
+        return editNum(numList.get(0));
     }
 
     public void editNumFormulaList(List<String> numList,List<String> formulaList){
@@ -194,5 +199,10 @@ public class CalculateControler {
 
     public int forumlaIndex(String forumulaStr,List<String> formulaList){
         return formulaList.indexOf(forumulaStr);
+    }
+
+    public String editNum(String numStr){
+        BigDecimal value = new BigDecimal(numStr);
+        return value.stripTrailingZeros().toString();
     }
 }
