@@ -7,8 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="Javadoc、コメントアウトの追加&#10;処理の共通化&#10;テストの追加">
-      <change beforePath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ValidateNumFormulaTest.java" afterDir="false" />
+    <list default="true" id="3c8ceef7-1e6d-408e-a5a7-e2975c2a9770" name="変更" comment="単純化できる処理の修正">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculateControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculateControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalculateControlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,17 +40,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last.edited.regexp": "",
-    "last_opened_file_path": "C:/Users/takizawa/Desktop/calculator"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last.edited.regexp&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/takizawa/Desktop/calculator&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -61,6 +63,15 @@
     <configuration name="CalculatorEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorEntry" />
       <module name="calculator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculateControlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculateControlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -85,15 +96,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidateNumFormulaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="calculator" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ValidateNumFormulaTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="calculator 内のすべて" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <option name="PACKAGE_NAME" value="" />
@@ -105,10 +107,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.calculator 内のすべて" />
+        <item itemvalue="アプリケーション.CalculatorEntry" />
+        <item itemvalue="JUnit.CalculateControlerTest" />
         <item itemvalue="JUnit.CalculateControlerTest.計算結果格納_失敗" />
         <item itemvalue="JUnit.CalculateControlerTest.計算結果格納確認" />
-        <item itemvalue="アプリケーション.CalculatorEntry" />
-        <item itemvalue="JUnit.ValidateNumFormulaTest" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679304047708</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="単純化できる処理の修正">
+      <created>1679304218845</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679304218845</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +193,7 @@
     <MESSAGE value="不要な小数点以下の０を削除&#10;例外処理発生時のメッセージを表示できるように修正" />
     <MESSAGE value="小数E（5.4E5など）対応&#10;計算結果の5E+3などを5E3のように変換&#10;minの関数が漏れていたので追加&#10;演算メソッドに数値チェックと引数チェック追加" />
     <MESSAGE value="Javadoc、コメントアウトの追加&#10;処理の共通化&#10;テストの追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc、コメントアウトの追加&#10;処理の共通化&#10;テストの追加" />
+    <MESSAGE value="単純化できる処理の修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="単純化できる処理の修正" />
   </component>
 </project>

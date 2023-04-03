@@ -35,6 +35,11 @@ class CalculateControlerTest {
         assertEquals("54", calcControl.exec("max(10*sqrt(9),6*sqrt(81),20)"));
     }
     @Test
+    void レベル５_複数引数関数() {
+        CalculateControler calcControl = new CalculateControler();
+        assertEquals("3", calcControl.exec("max(max(3,2),min(1,2))"));
+    }
+    @Test
     void 演算子リストから位置取得_足し算() {
         CalculateControler calcControl = new CalculateControler();
         List<String> formulaList = Arrays.asList("+","*","+","*","/");

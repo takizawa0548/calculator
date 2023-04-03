@@ -23,7 +23,6 @@ public class CalculateControler {
         // 次に数値がくる状態=0,次に演算子が来る状態=1,演算子が連続で来ている状態=-1
         int numFormulaBalance = 0;
         StringBuilder insertNumStr = new StringBuilder();
-        StringBuilder insertFuctionStr = new StringBuilder();
         // 数値と演算子を仕分ける。関数や括弧が出てきたら括弧の範囲内を引数に再帰処理
         final char[] CHAR_ARRAY = numFormulaStr.toCharArray();
         while(index < CHAR_ARRAY.length) {
@@ -69,6 +68,7 @@ public class CalculateControler {
             // 関数が出た場合(演算子の後に来るものとする）
             else if (numFormulaBalance == 0 && ValidateNumFormula.checkCharFirstFunction(CHAR_ARRAY[index])) {
                 String addStr = "";
+                StringBuilder insertFuctionStr = new StringBuilder();
                 // 関数文字列格納
                 insertFuctionStr.append(CHAR_ARRAY[index]);
                 index++;
@@ -81,6 +81,7 @@ public class CalculateControler {
                         if ('(' == CHAR_ARRAY[index]) {
                             parenthesesBalance++;
                             index++;
+                            List<String> splitList = new ArrayList<>();
                             StringBuilder functionArgsStr = new StringBuilder();
                             // 関数内の引数取得
                             while (index < CHAR_ARRAY.length) {
@@ -93,12 +94,21 @@ public class CalculateControler {
                                     index++;
                                     break;
                                 }
+                                // 最初の関数括弧のカンマで格納していく　max(max(1,2),2)の場合：配列[max(1,2),2】で分解する
+                                if(parenthesesBalance==1 && ',' == CHAR_ARRAY[index]){
+                                    splitList.add(functionArgsStr.toString());
+                                    functionArgsStr = new StringBuilder();
+                                    index++;
+                                    continue;
+                                }
                                 // 引数格納
                                 functionArgsStr.append(CHAR_ARRAY[index]);
                                 index++;
                             }
-                            // ","で分解し配列に格納
-                            String[] argsStrList = functionArgsStr.toString().split(",");
+                            // カンマがなかった場合または、カンマ区切りの最終文字列を追加
+                            splitList.add(functionArgsStr.toString());
+                            // 配列に格納
+                            String[] argsStrList = splitList.toArray(new String[0]);
                             // 引数が数値になるように再帰呼び出し
                             for (int i = 0; i < argsStrList.length; i++) {
                                 final String argsStr = argsStrList[i];
